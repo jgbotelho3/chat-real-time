@@ -22,11 +22,24 @@ class ChatController extends Controller
      */
     public function store(Request $request)
     {
-
-        $message = auth()->user()->messages()->create([
+        $user = auth()->user();
+        $message = $user->messages()->create([
             'body' => $request->body
         ]);
 
+        $message['user'] = $user;
+
         return response()->json($message, 201);
+    }
+
+    public function listAll(Message $message)
+    {
+        $messages = $message->with('user')
+                            ->orderBy('id', 'DESC')
+                            ->limit(50)
+                            ->latest()
+                            ->get();
+
+        return response()->json($messages);
     }
 }

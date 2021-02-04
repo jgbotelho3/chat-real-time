@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 
 Route::group(['middleware' => 'auth'], function(){
     Route::get('chat', [ChatController::class, 'index'])->name('chat');
+    Route::get('chat/messages', [ChatController::class, 'listAll']);
     Route::post('chat/message', [ChatController::class, 'store']);
 });
 

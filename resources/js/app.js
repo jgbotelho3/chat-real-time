@@ -8,6 +8,7 @@ window.Vue = require('vue').default;
 Vue.component('chat', require('./components/chat/Chat').default);
 Vue.component('users', require('./components/chat/Users').default);
 Vue.component('messages', require('./components/chat/Messages').default);
+Vue.component('message-interface', require('./components/chat/MessageInterface').default);
 
 const app = new Vue({
     el: '#app',
