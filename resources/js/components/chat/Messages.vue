@@ -63,8 +63,8 @@ export default {
 
 <style scoped>
 .messageContainer{
-    height: 300px;
-    max-height: 300px;
+    height: 400px;
+    max-height: 400px;
     overflow-x: hidden;
     overflow-y: auto;
 

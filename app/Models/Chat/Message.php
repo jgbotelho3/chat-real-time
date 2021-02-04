@@ -13,6 +13,26 @@ class Message extends Model
 
     protected $fillable = ['body'];
 
+    protected $appends = ['owner'];
+
+
+    /**
+     * @return bool
+     */
+    public function getOwnerAttribute()
+    {
+        return $this->user_id == auth()->user()->id;
+    }
+
+    /**
+     * @param $data
+     * @return string
+     */
+    public function getCreatedAtAttribute($data)
+    {
+        return \Carbon\Carbon::parse($data)->format('d/m/Y H:i');
+    }
+
     /**
      * @return BelongsTo
      */
