@@ -4,7 +4,11 @@
             <strong>{{message.user.name}}</strong> <span>{{message.created_at}}</span>
         </div>
         <div class="message-container">
-            <div class="chat-img">
+
+            <div class="chat-img" v-if="message.user.image">
+                <img :src="`/storage/users/${message.user.image}`" :alt="message.user.name" />
+            </div>
+            <div class="chat-img" v-else>
                 <img src="/imgs/avatar.png" :alt="message.user.name" />
             </div>
             <div :class="['message', {'owner': message.owner}]">
@@ -46,13 +50,20 @@ export default {
 }
 
 .chat-img{
+    width: 60px;
+    height: 60px;
+    max-height: 60px;
     margin-right: 1rem;
+    max-width: 60px;
 }
 
 .chat-img img{
     max-width: 60px;
-    border-radius: 100%;
+    height: 100%;
+    border-radius: 20%;
     border: 1px solid #ccc;
+
+;
 }
 
 .message{
