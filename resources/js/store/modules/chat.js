@@ -9,6 +9,20 @@ export default {
         },
         ADD_MESSAGE (state, message){
             state.messages.push(message)
+        },
+
+        LOAD_USERS (state, users){
+            state.users = users
+        },
+
+        USER_JOINING (state, user){
+            state.users.push(user)
+        },
+
+        USER_LEAVING (state, user){
+            state.users = state.users.filter(item => {
+                return item.id !== user.id
+            })
         }
     },
     actions: {

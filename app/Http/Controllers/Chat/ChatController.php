@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Chat;
 
+use App\Events\Chat\MessageCreated;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -28,6 +29,8 @@ class ChatController extends Controller
         ]);
 
         $message['user'] = $user;
+
+        broadcast(new MessageCreated($message))->toOthers();
 
         return response()->json($message, 201);
     }
